@@ -72,8 +72,11 @@ function App() {
       <header className="site-header">
         <div className="header-container">
           <a href="/" className="logo-link" aria-label="Modern plAI-wright Home">
-            <span className="logo-icon" aria-hidden="true">&#9998;</span>
-            <span className="logo-text">modern pl<span className="highlight">AI</span>-wright</span>
+            <img
+              src="/modern-plAI-wright-logo-beta-2.webp"
+              alt="Modern plAI-wright"
+              className="logo-image"
+            />
           </a>
           <nav aria-label="Main navigation">
             <a
@@ -90,6 +93,19 @@ function App() {
 
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-heading">
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          >
+            <source
+              src="https://cloud-1de12d.becdn.net/customfile/b0f106b69fec140df599cd13e243e87f9076d62441bbbe2b1d973d33fc82feb2/buckjaeger-A-bust-of-William-Shakespeare-as-an-astronaut-on-a-0730b0ca-d8bd-4be4-a767-22fef3c39071-2.mp4"
+              type="video/mp4"
+            />
+          </video>
           <div className="hero-content">
             <h1 id="hero-heading">
               <span className="hero-tagline">a professional development experience<span className="accent-dots">...</span></span>
@@ -107,9 +123,17 @@ function App() {
 
         <section className="about" aria-labelledby="about-heading">
           <div className="about-container">
-            <div className="about-images" aria-hidden="true">
-              <div className="about-image-placeholder"></div>
-              <div className="about-image-placeholder secondary"></div>
+            <div className="about-images">
+              <img
+                src="/a-statue-of-a-person.webp"
+                alt="Statue of William Shakespeare"
+                className="about-image"
+              />
+              <img
+                src="/make-eat-sleep-repeat.webp"
+                alt="Make Create Sleep Repeat - creative process illustration"
+                className="about-image secondary"
+              />
             </div>
             <div className="about-content">
               <h2 id="about-heading" className="visually-hidden">About the Program</h2>
@@ -128,6 +152,13 @@ function App() {
             <div className="create-content">
               <h2 id="create-heading">What You'll Create</h2>
               <p>You'll work in a troupe of four educators to create meaningful artifacts that demonstrate your transformation. These aren't worksheets—they're portfolio-ready projects you'll actually use and share.</p>
+            </div>
+            <div className="create-image-container">
+              <img
+                src="/white-feather-on-black-metal-cup.webp"
+                alt="Quill pen in inkwell representing creative writing"
+                className="create-image"
+              />
             </div>
           </div>
         </section>
