@@ -1,8 +1,47 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
+
+// Custom hook for scroll animations
+function useScrollAnimation() {
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current)
+      }
+    }
+  }, [])
+
+  return [ref, isVisible]
+}
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null)
+
+  // Scroll animation refs
+  const [aboutRef, aboutVisible] = useScrollAnimation()
+  const [createRef, createVisible] = useScrollAnimation()
+  const [artifactsRef, artifactsVisible] = useScrollAnimation()
+  const [detailsRef, detailsVisible] = useScrollAnimation()
+  const [audienceRef, audienceVisible] = useScrollAnimation()
+  const [faqRef, faqVisible] = useScrollAnimation()
+  const [ctaRef, ctaVisible] = useScrollAnimation()
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index)
@@ -121,7 +160,11 @@ function App() {
           </div>
         </section>
 
-        <section className="about" aria-labelledby="about-heading">
+        <section
+          ref={aboutRef}
+          className={`about animate-on-scroll ${aboutVisible ? 'visible' : ''}`}
+          aria-labelledby="about-heading"
+        >
           <div className="about-container">
             <div className="about-images">
               <img
@@ -147,7 +190,11 @@ function App() {
           </div>
         </section>
 
-        <section className="create" aria-labelledby="create-heading">
+        <section
+          ref={createRef}
+          className={`create animate-on-scroll ${createVisible ? 'visible' : ''}`}
+          aria-labelledby="create-heading"
+        >
           <div className="create-container">
             <div className="create-content">
               <h2 id="create-heading">What You'll Create</h2>
@@ -163,11 +210,15 @@ function App() {
           </div>
         </section>
 
-        <section className="artifacts" aria-labelledby="artifacts-heading">
+        <section
+          ref={artifactsRef}
+          className={`artifacts animate-on-scroll ${artifactsVisible ? 'visible' : ''}`}
+          aria-labelledby="artifacts-heading"
+        >
           <h2 id="artifacts-heading" className="visually-hidden">Program Artifacts</h2>
           <div className="artifacts-grid">
             {artifacts.map((artifact, index) => (
-              <article key={index} className="artifact-card">
+              <article key={index} className={`artifact-card delay-${index + 1}`}>
                 <h3>{artifact.title}</h3>
                 <p>{artifact.description}</p>
               </article>
@@ -175,7 +226,11 @@ function App() {
           </div>
         </section>
 
-        <section className="details" aria-labelledby="details-heading">
+        <section
+          ref={detailsRef}
+          className={`details animate-on-scroll ${detailsVisible ? 'visible' : ''}`}
+          aria-labelledby="details-heading"
+        >
           <h2 id="details-heading" className="visually-hidden">Program Details</h2>
           <div className="details-grid">
             <div className="detail-card">
@@ -217,12 +272,16 @@ function App() {
           </div>
         </section>
 
-        <section className="audience" aria-labelledby="audience-heading">
+        <section
+          ref={audienceRef}
+          className={`audience animate-on-scroll ${audienceVisible ? 'visible' : ''}`}
+          aria-labelledby="audience-heading"
+        >
           <div className="audience-container">
             <h2 id="audience-heading">Who is this for?</h2>
             <div className="audience-grid">
               {audienceItems.map((item, index) => (
-                <div key={index} className="audience-item">
+                <div key={index} className={`audience-item delay-${(index % 5) + 1}`}>
                   <span className="checkmark" aria-hidden="true">&#10003;</span>
                   <div>
                     <h3>{item.title}</h3>
@@ -234,7 +293,11 @@ function App() {
           </div>
         </section>
 
-        <section className="faq" aria-labelledby="faq-heading">
+        <section
+          ref={faqRef}
+          className={`faq animate-on-scroll ${faqVisible ? 'visible' : ''}`}
+          aria-labelledby="faq-heading"
+        >
           <div className="faq-container">
             <h2 id="faq-heading" className="visually-hidden">Frequently Asked Questions</h2>
             <div className="accordion" role="region" aria-label="Frequently Asked Questions">
@@ -269,7 +332,11 @@ function App() {
           </div>
         </section>
 
-        <section className="cta" aria-labelledby="cta-heading">
+        <section
+          ref={ctaRef}
+          className={`cta animate-on-scroll ${ctaVisible ? 'visible' : ''}`}
+          aria-labelledby="cta-heading"
+        >
           <div className="cta-container">
             <h2 id="cta-heading">READY TO BE BARD?</h2>
             <p className="cta-tagline">BE BRAVE. BE BOLD.</p>
