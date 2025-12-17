@@ -90,6 +90,19 @@ function App() {
 
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-heading">
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          >
+            <source
+              src="https://cloud-1de12d.becdn.net/customfile/b0f106b69fec140df599cd13e243e87f9076d62441bbbe2b1d973d33fc82feb2/buckjaeger-A-bust-of-William-Shakespeare-as-an-astronaut-on-a-0730b0ca-d8bd-4be4-a767-22fef3c39071-2.mp4"
+              type="video/mp4"
+            />
+          </video>
           <div className="hero-content">
             <h1 id="hero-heading">
               <span className="hero-tagline">a professional development experience<span className="accent-dots">...</span></span>
