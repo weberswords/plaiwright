@@ -190,12 +190,9 @@ button:focus-visible {
   font-weight: 500;
 }
 
-.logo-icon {
-  font-size: 1.5rem;
-}
-
-.logo-text .highlight {
-  color: var(--color-yellow);
+.logo-image {
+  height: 40px;
+  width: auto;
 }
 
 .nav-cta {
@@ -336,16 +333,16 @@ button:focus-visible {
   gap: var(--spacing-md);
 }
 
-.about-image-placeholder {
-  background-color: var(--color-off-white);
+.about-image {
   border-radius: var(--radius-md);
-  aspect-ratio: 4/5;
   max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
-.about-image-placeholder.secondary {
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+.about-image.secondary {
+  max-width: 250px;
 }
 
 .about-content {
@@ -376,8 +373,30 @@ button:focus-visible {
 }
 
 .create-container {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .create-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.create-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.create-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .create-content h2 {
